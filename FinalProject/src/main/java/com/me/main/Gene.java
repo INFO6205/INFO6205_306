@@ -12,8 +12,17 @@ package com.me.main;
 public class Gene implements Comparable<Gene>{
     private Point[] points;
     private double total;
+    private int generation;
     public Gene(Point[] points){
         this.points=points;
+    }
+
+    public int getGeneration() {
+        return generation;
+    }
+
+    public void setGeneration(int generation) {
+        this.generation = generation;
     }
 
     public Point[] getPoints() {

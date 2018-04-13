@@ -12,11 +12,11 @@ package com.me.main;
 public class Main {
     public static void main(String[] args) {
       Environment e=new Environment();
-//      Gene g=e.begin();
-//      for(Point p:g.getPoints())
-//        System.out.print(p.getXpo()+","+p.getYpo()+"->");
-//        System.out.println(g.getTotal());
-        System.out.println(e.begin());
+      Gene g=e.begin(0,0);
+      for(Point p:g.getPoints())
+        System.out.print(p.getXpo()+","+p.getYpo()+"->");
+        System.out.println(g.getTotal());
+
 }
 }
  

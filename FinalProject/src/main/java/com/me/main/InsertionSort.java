@@ -6,6 +6,8 @@
 package com.me.main;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  *
@@ -17,7 +19,7 @@ public class InsertionSort <X extends Comparable<X>> {
           
       for (int i = 0; i <xs.size(); i++) 
          for (int j = i; j > 0; j--) 
-            if (less(xs.get(j),xs.get(i))) 
+            if (less(xs.get(j),xs.get(j-1))) 
               swap(xs, j, j-1); 
             else break; 
     }
@@ -30,6 +32,7 @@ public class InsertionSort <X extends Comparable<X>> {
         X temp1 =a.get(j);
         a.set(j, temp);
         a.set(i, temp1);
+
     }
 }
 
