@@ -50,10 +50,25 @@ public class NextCanvas extends Thread{
    }
 
      }
-    
+     public void draw1(Gene gene){
+     Graphics g = ui.getGraphics();
+		Graphics2D g2d = (Graphics2D) g;
+		Dimension size = ui.getSize();
+                int wid=size.width;
+                int height=size.height;
+                System.out.println(wid+","+height);
+   if(gene!=null){
+       Point[] p=gene.getPoints();
+       for(int i=0;i<p.length-1;i++)
+                paintLineBig(g2d,p[i].getXpo()*wid/100,p[i].getYpo()*height/100,p[i+1].getXpo()*wid/100,p[i+1].getYpo()*height/100);
+           paintLineBig(g2d,p[0].getXpo()*wid/100,p[0].getYpo()*height/100,p[p.length-1].getXpo()*wid/100,p[p.length-1].getYpo()*height/100);
+       
+   }
+
+     }
     private void paintLine(Graphics2D g2d, int startx, int starty, int endx, int endy) {
 		g2d.setColor(Color.BLACK);
-                g2d.setStroke(new BasicStroke(3.0f));
+                g2d.setStroke(new BasicStroke(5.0f));
 		g2d.drawLine(startx, starty, endx, endy);
                 
                 /*g2d.setColor(Color.RED);
@@ -63,6 +78,15 @@ public class NextCanvas extends Thread{
      private void paintLine1(Graphics2D g2d, int startx, int starty, int endx, int endy) {
 		g2d.setColor(Color.RED);
                 g2d.setStroke(new BasicStroke(3.0f));
+		g2d.drawLine(startx, starty, endx, endy);
+                
+                /*g2d.setColor(Color.RED);
+                g2d.setStroke(new BasicStroke(3.0f));
+		g2d.drawLine(endx, endy, endx, endy);*/
+	}
+      private void paintLineBig(Graphics2D g2d, int startx, int starty, int endx, int endy) {
+		g2d.setColor(Color.BLUE);
+                g2d.setStroke(new BasicStroke(1.0f));
 		g2d.drawLine(startx, starty, endx, endy);
                 
                 /*g2d.setColor(Color.RED);

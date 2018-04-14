@@ -196,6 +196,9 @@ Gene ng1=new Gene(new1);
              genes.add(g);
     }
     public Gene begin(int x,int y){
+        genes=new ArrayList<>();
+        generation=1;
+        bestG=new ArrayList<>();
         int sybol=0;
         init(x,y);
         insert.sort(genes);

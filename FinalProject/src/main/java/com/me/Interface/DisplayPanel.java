@@ -68,6 +68,7 @@ public class DisplayPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         nc.draw(gene);
+        nc.draw1(gene);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
