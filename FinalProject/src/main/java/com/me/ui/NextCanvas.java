@@ -68,7 +68,7 @@ public class NextCanvas extends Thread{
      }
     private void paintLine(Graphics2D g2d, int startx, int starty, int endx, int endy) {
 		g2d.setColor(Color.BLACK);
-                g2d.setStroke(new BasicStroke(5.0f));
+                g2d.setStroke(new BasicStroke(7.0f));
 		g2d.drawLine(startx, starty, endx, endy);
                 
                 /*g2d.setColor(Color.RED);
@@ -76,8 +76,8 @@ public class NextCanvas extends Thread{
 		g2d.drawLine(endx, endy, endx, endy);*/
 	}
      private void paintLine1(Graphics2D g2d, int startx, int starty, int endx, int endy) {
-		g2d.setColor(Color.RED);
-                g2d.setStroke(new BasicStroke(3.0f));
+		g2d.setColor(Color.cyan);
+                g2d.setStroke(new BasicStroke(4.0f));
 		g2d.drawLine(startx, starty, endx, endy);
                 
                 /*g2d.setColor(Color.RED);
@@ -85,8 +85,8 @@ public class NextCanvas extends Thread{
 		g2d.drawLine(endx, endy, endx, endy);*/
 	}
       private void paintLineBig(Graphics2D g2d, int startx, int starty, int endx, int endy) {
-		g2d.setColor(Color.BLUE);
-                g2d.setStroke(new BasicStroke(1.0f));
+		g2d.setColor(Color.blue);
+                g2d.setStroke(new BasicStroke(1.5f));
 		g2d.drawLine(startx, starty, endx, endy);
                 
                 /*g2d.setColor(Color.RED);

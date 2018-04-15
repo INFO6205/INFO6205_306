@@ -25,8 +25,14 @@ public class InsertionSortTest {
     ai.add(4);
     ai.add(2);
     ai.add(1);
+    ai.add(5);
     sc.sort(ai);
     assertEquals(1,(int)ai.get(0));
-
+    assertEquals(2,(int)ai.get(1));
+    assertEquals(3,(int)ai.get(2));
+    assertEquals(4,(int)ai.get(3));
+    assertEquals(5,(int)ai.get(4));
     }
+    
+
 }
