@@ -14,16 +14,19 @@ import java.util.Random;
  * @author jm
  */
 public class Environment {
+    //Because of the unit test, we change the function to public.
+    //The function calculateFitness, cross, cross2, mutation, evolution and evolution2 should be private.
     private final int capacity=1000;//The capacity of environment
     private ArrayList<Gene> genes=new  ArrayList<Gene>() ;//genes of all colonies
     private ArrayList<Gene> offSpring=new  ArrayList<Gene>() ;//genes of all offSpring
     private ArrayList<Double> fitness=new ArrayList<Double>();//fitness of all clonies
-    private double Pc=0.9,Pm=0.01;//The possibility of crossGene and mutation
+    private double Pc=0.9,Pm=0.005;//The possibility of crossGene and mutation
     private int generation=1,max=10000;//Current generation and max generation
     private double bestW=Double.MAX_VALUE;//The best cost
     private ArrayList<Gene> bestG=new  ArrayList<Gene>();//The best genes 
    private final Random random = new Random();
    private Graph graph;
+   private ArrayList<Double> bestD=new ArrayList<Double>();
    private InsertionSort<Gene> insert=new InsertionSort<>();
     public void init(int x,int y){
         graph=new Graph("Simple1.csv");
@@ -37,13 +40,13 @@ for(int i=0;i<100;i++){
       genes.add(g);
 }
     }
-    private void calculateFitness(){
+    public void calculateFitness(){
     fitness=new ArrayList<Double>();
     for(Gene g:genes)
         fitness.add(1.0/g.getTotal());
     }
     //cross and decide the genes of offspring method1
-    private void cross(Gene g1,Gene g2){
+    public void cross(Gene g1,Gene g2){
         int index=graph.getPos().size(),temp,flag;
       int  start = random.nextInt(index);  
       int  end= random.nextInt(index); 
@@ -99,7 +102,7 @@ for(int i=0;i<100;i++){
        offSpring.add(ng2);
     }
     //cross and decide the genes of offspring method2
-     private void cross2(Gene g1,Gene g2){
+     public void cross2(Gene g1,Gene g2){
       int index=graph.getPos().size(),temp,flag,i,j,k;
       int  cut1 = random.nextInt(index);  
       int  cut2= random.nextInt(index); 
@@ -161,7 +164,7 @@ Gene ng1=new Gene(new1);
        offSpring.add(ng1);
        offSpring.add(ng2);
      }
-    private void Mutation(Gene g) {  
+    public void Mutation(Gene g) {  
         int index=graph.getPos().size();
         int p1, p2;
         Point temp;
@@ -180,7 +183,22 @@ Gene ng1=new Gene(new1);
         }  
         g.calculateWeight();
     }
-    private void evolution(){  
+    public void evolution(){  
+        int index=genes.size();
+        int a=0,b=0,c=0;
+        int item1=random.nextInt(index),item2=random.nextInt(index);;
+        offSpring=new ArrayList<>();
+         for(int i=0;i<genes.size()/4;i++){
+         while(genes.get(item1).getGeneration()>generation-2)
+              item1=random.nextInt(index);
+         while((genes.get(item2).getGeneration()>generation-2)||item1==item2)
+               item2=random.nextInt(index);
+         cross(genes.get(item1), genes.get(item2));
+         }
+         for(Gene g:offSpring)
+             genes.add(g);
+    }
+     public void evolution2(){  
         int index=genes.size();
         int a=0,b=0,c=0;
         int item1=random.nextInt(index),item2=random.nextInt(index);;
@@ -197,7 +215,9 @@ Gene ng1=new Gene(new1);
     }
     public Gene begin(int x,int y){
         genes=new ArrayList<>();
+        bestD=new ArrayList<Double>();
         generation=1;
+        bestW=Double.MAX_VALUE;
         bestG=new ArrayList<>();
         int sybol=0;
         init(x,y);
@@ -218,14 +238,93 @@ Gene ng1=new Gene(new1);
         if(bestW>genes.get(0).getTotal()){
             bestW=genes.get(0).getTotal();
             sybol=0;
+          
         }
-        if(bestW==genes.get(0).getTotal())
+        if(bestW==genes.get(0).getTotal()){
             sybol++;
-        if(sybol>1000)
+        }
+        if(sybol>2000){
+       
             break;
+        }
+        bestD.add(genes.get(0).getTotal());
         bestG.add(genes.get(0));
         }
-        System.out.println(bestG.size());
             return genes.get(0);
     }
+    public int getGeneration(){
+        return this.generation-1;
+    }
+
+    public ArrayList<Double> getBestD() {
+        return bestD;
+    }
+
+    public double getBestW() {
+        return bestW;
+    }
+    
+     public Gene begin2(int x,int y){
+        genes=new ArrayList<>();
+        bestD=new ArrayList<Double>();
+        generation=1;
+        bestW=Double.MAX_VALUE;
+        bestG=new ArrayList<>();
+        int sybol=0;
+        init(x,y);
+        insert.sort(genes);
+        calculateFitness();        
+        for(;generation<max+1;generation++){
+        evolution2();
+        for(int i=0;i<genes.size();i++)
+        {
+           float rate=random.nextFloat();
+           if(rate<Pm)
+               Mutation(genes.get(i));
+        }
+        insert.sort(genes);
+        while(genes.size()>capacity){
+            genes.remove(genes.size()-1);
+        }
+        if(bestW>genes.get(0).getTotal()){
+            bestW=genes.get(0).getTotal();
+            sybol=0;
+        }
+        if(bestW==genes.get(0).getTotal()){
+            sybol++;
+         
+        }
+        if(sybol>2000)
+            break;
+        bestD.add(genes.get(0).getTotal());
+        bestG.add(genes.get(0));
+        }
+            return genes.get(0);
+    }
+
+    public ArrayList<Gene> getGenes() {
+        return genes;
+    }
+
+    public ArrayList<Gene> getOffSpring() {
+        return offSpring;
+    }
+
+    public Random getRandom() {
+        return random;
+    }
+
+    public Graph getGraph() {
+        return graph;
+    }
+
+    public void setGraph(Graph graph) {
+        this.graph = graph;
+    }
+
+    public ArrayList<Gene> getBestG() {
+        return bestG;
+    }
+     
+     
 }

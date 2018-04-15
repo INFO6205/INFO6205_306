@@ -7,10 +7,12 @@ package com.me.Interface;
 
 import com.me.main.Environment;
 import com.me.main.Gene;
+import com.me.main.ThreadRunning;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import com.me.ui.NextCanvas;
+import java.util.Map;
 
 /**
  *
@@ -22,12 +24,12 @@ public class SetPanel extends javax.swing.JPanel {
      * Creates new form SetPanel
      */
      private JPanel Right;
-     private Environment environment;
+     private ThreadRunning tr;
      private NextCanvas nc;
-    public SetPanel(JPanel Right, NextCanvas nc,Environment environment) {
+    public SetPanel(JPanel Right, NextCanvas nc,ThreadRunning tr) {
         initComponents();
         this.Right=Right;
-        this.environment=environment;
+        this.tr=tr;
         this.nc=nc;
     }
 
@@ -102,14 +104,31 @@ public class SetPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        int a=Integer.parseInt(xpo.getText());
-        int b=Integer.parseInt(ypo.getText());
-        Gene g=environment.begin(a, b);
+try {
+       int a=Integer.parseInt(xpo.getText());
+       int b=Integer.parseInt(ypo.getText());
+       if(a<0||b<0||a>=100||b>=100){
+      JOptionPane.showMessageDialog(null, "Wrong Number Input!");
+             xpo.setText("");
+             ypo.setText("");
+       }
+       else{
+        
+                   Map<String,Object> map=tr.threadResult(a, b);
         JOptionPane.showMessageDialog(null, "Input Successfully!");
-        ResultPanel result=new ResultPanel(Right,nc,g);
+        ResultPanel result=new ResultPanel(Right,nc,map);
         Right.add("result",result);
         CardLayout layout= (CardLayout)Right.getLayout();
         layout.next( Right);
+       }
+        }
+        catch( Exception e){
+           
+            JOptionPane.showMessageDialog(null, "Wrong Number Input!");
+                xpo.setText("");
+             ypo.setText("");
+        }
+      
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

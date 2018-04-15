@@ -6,6 +6,7 @@
 package com.me.Interface;
 
 import com.me.main.Environment;
+import com.me.main.ThreadRunning;
 import java.awt.BasicStroke;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -25,11 +26,11 @@ public class NewJFrame extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
 
-    private Environment environment;
+    private ThreadRunning tr;
     private NextCanvas nc;
     public NewJFrame() {
         initComponents();
-        environment=new Environment();
+        tr=new ThreadRunning();
          nc=new NextCanvas(Right);
     }
 
@@ -94,7 +95,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        SetPanel sp=new SetPanel(Right,nc,environment);
+        SetPanel sp=new SetPanel(Right,nc,tr);
         Right.add("Set", sp);
         CardLayout layout= (CardLayout)Right.getLayout();
         layout.next( Right);

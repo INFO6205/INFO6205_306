@@ -5,11 +5,11 @@
  */
 package com.me.Interface;
 
-import com.me.main.Environment;
 import com.me.main.Gene;
 import com.me.main.Point;
 import com.me.ui.NextCanvas;
 import java.awt.CardLayout;
+import java.util.Map;
 import javax.swing.JPanel;
 
 /**
@@ -21,22 +21,33 @@ public class ResultPanel extends javax.swing.JPanel {
     /**
      * Creates new form ResultPanel
      */
-   private JPanel Right;
-     private Gene gene;
-          private NextCanvas nc;
-    public ResultPanel(JPanel Right,NextCanvas nc,Gene gene) {
+    private JPanel Right;
+     private Map<String,Object> map;
+     private NextCanvas nc;
+    public ResultPanel(JPanel Right, NextCanvas nc,Map<String,Object> map) {
         initComponents();
         this.Right=Right;
-        this.gene=gene;
+        this.map=map;
         this.nc=nc;
-        result.setText(String.valueOf(gene.getTotal()));
-        Point[] p=gene.getPoints();
-        String s=String.valueOf(p[0].getXpo())+","+String.valueOf(p[0].getYpo());
-        for(int i=1;i<p.length;i++)
-            s=s+"->"+String.valueOf(p[i].getXpo())+","+String.valueOf(p[i].getYpo());
-        path.setText(s);
+        Gene g1=(Gene)map.get("Method1");
+        Gene g2=(Gene)map.get("Method2");
+        int gener1=(int)map.get("generation1");
+        int gener2=(int)map.get("generation2");
+        gen1.setText(String.valueOf(gener1));
+        gen2.setText(String.valueOf(gener2));
+        dis1.setText(String.valueOf(g1.getTotal()));
+        dis2.setText(String.valueOf(g2.getTotal()));
+        Point[] p1=g1.getPoints();
+        Point[] p2=g2.getPoints();
+        String s1=String.valueOf(p1[0].getXpo())+","+String.valueOf(p1[0].getYpo());
+        String s2=String.valueOf(p2[0].getXpo())+","+String.valueOf(p2[0].getYpo());
+        for(int i=1;i<p1.length;i++)
+            s1=s1+"-->"+String.valueOf(p1[i].getXpo())+","+String.valueOf(p1[i].getYpo());
+        for(int i=1;i<p2.length;i++)
+            s2=s2+"-->"+String.valueOf(p2[i].getXpo())+","+String.valueOf(p2[i].getYpo());
+        path1.setText(s1);
+        path2.setText(s2);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,32 +60,56 @@ public class ResultPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        result = new javax.swing.JTextField();
-        path = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        generation = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        path1 = new javax.swing.JLabel();
+        dis1 = new javax.swing.JTextField();
+        gen1 = new javax.swing.JTextField();
+        gen2 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        path2 = new javax.swing.JLabel();
+        dis2 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
-        jLabel1.setText("Result will be");
+        jLabel1.setText("The result will be ");
 
-        jLabel2.setText("Distance: ");
+        jLabel2.setText("Method1:");
 
-        jLabel3.setText("Path:");
+        jLabel3.setText("Genearation:");
 
-        result.setEnabled(false);
+        jLabel4.setText("Distance:");
 
-        path.setText("jLabel4");
+        jLabel5.setText("Path:");
 
-        jButton1.setText("Draw");
+        path1.setText("jLabel6");
+
+        dis1.setEnabled(false);
+
+        gen1.setEnabled(false);
+
+        gen2.setEnabled(false);
+
+        jLabel6.setText("Method2:");
+
+        jLabel7.setText("Genearation:");
+
+        jLabel8.setText("Distance:");
+
+        jLabel9.setText("Path:");
+
+        path2.setText("jLabel6");
+
+        dis2.setEnabled(false);
+
+        jButton1.setText("Display");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        jLabel4.setText("Generation: ");
-
-        generation.setText("jLabel4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -83,20 +118,42 @@ public class ResultPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(path2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel4))
-                        .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(generation)
-                            .addComponent(path)
-                            .addComponent(result, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(115, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(dis2, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(gen2)))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(gen1))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(dis1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButton1))
+                        .addGap(0, 168, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(path1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,41 +161,66 @@ public class ResultPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(result, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(path))
+                    .addComponent(gen1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(generation))
-                .addGap(13, 13, 13)
+                    .addComponent(dis1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(path1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(gen2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(dis2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(path2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        DisplayPanel dis=new DisplayPanel(Right,nc,gene);
+        Gene g1=(Gene)map.get("Method1");
+        Gene g2=(Gene)map.get("Method2");
+        DisplayPanel dis=new DisplayPanel(Right,nc,g1,g2);
         Right.add("display",dis);
         CardLayout layout= (CardLayout)Right.getLayout();
         layout.next( Right);
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel generation;
+    private javax.swing.JTextField dis1;
+    private javax.swing.JTextField dis2;
+    private javax.swing.JTextField gen1;
+    private javax.swing.JTextField gen2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel path;
-    private javax.swing.JTextField result;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel path1;
+    private javax.swing.JLabel path2;
     // End of variables declaration//GEN-END:variables
 }

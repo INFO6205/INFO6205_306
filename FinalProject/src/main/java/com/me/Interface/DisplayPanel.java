@@ -8,6 +8,8 @@ package com.me.Interface;
 import com.me.main.Gene;
 import com.me.main.Point;
 import com.me.ui.NextCanvas;
+import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JPanel;
 
 /**
@@ -20,12 +22,14 @@ public class DisplayPanel extends javax.swing.JPanel {
      * Creates new form DisplayPanel
      */
  private JPanel Right;
-     private Gene gene;
+     private Gene g1;
+          private Gene g2;
           private NextCanvas nc;
-    public DisplayPanel(JPanel Right,NextCanvas nc,Gene gene) {
+    public DisplayPanel(JPanel Right,NextCanvas nc,Gene g1,Gene g2) {
         initComponents();
         this.Right=Right;
-        this.gene=gene;
+        this.g1=g1;
+        this.g2=g2;
         this.nc=nc;
     }
 
@@ -39,11 +43,19 @@ public class DisplayPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jButton1.setText("Display");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -53,26 +65,40 @@ public class DisplayPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap(315, Short.MAX_VALUE))
+                .addContainerGap(240, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(267, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        nc.draw(gene);
-        nc.draw1(gene);
+        nc.draw(g1);
+        nc.draw1(g2);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+         Right.remove(this);
+        Component component[]=Right.getComponents();
+       ResultPanel rp=(ResultPanel)component[(component.length-1)];
+        CardLayout layout= (CardLayout) Right.getLayout();
+        layout.previous(Right);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables
 }
