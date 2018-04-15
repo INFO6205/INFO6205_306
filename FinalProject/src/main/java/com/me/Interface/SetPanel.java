@@ -108,7 +108,7 @@ try {
        int a=Integer.parseInt(xpo.getText());
        int b=Integer.parseInt(ypo.getText());
        if(a<0||b<0||a>=100||b>=100){
-      JOptionPane.showMessageDialog(null, "Wrong Number Input!");
+      JOptionPane.showMessageDialog(null, "Please input the number between 0 and 100!");
              xpo.setText("");
              ypo.setText("");
        }
