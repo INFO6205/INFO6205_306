@@ -5,4 +5,4 @@ The content of this research project: given a set of randomly generated cities a
 For example, the traveller's home is (0,0). He wants to visit the other 20 cities showed on the below chart. Our task is helping him to find the shortest way.</br>
 ![](https://github.com/INFO6205/INFO6205_306/raw/master/images/1.png)</br>
 In addition, **the hometown of the traveller can be decided by the user**. Depending on the different start point, there will be different ways.<br>
-So we decide the user interface for users to decide the hometown easily.
+So we design the user interface for users to decide the travell's home easily.
