@@ -7,6 +7,6 @@ For example, the traveller's home is (0,0). He wants to visit the other 20 citie
 In addition, **the hometown of the traveller can be decided by the user**. Depending on the different start point, there will be different ways.<br>
 So we design the user interface for users to decide the traveller's home easily.
 ## Team Members
-Name: Dingting Huang  NUID:001824907</br>
-Name: Yize Wang       NUID:001822633</br>
-Name: Heng Wang       NUID:001822598</br>
+  * Name: Dingting Huang  NUID:001824907</br>
+  * Name: Yize Wang       NUID:001822633</br>
+  * Name: Heng Wang       NUID:001822598</br>
