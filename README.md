@@ -10,3 +10,5 @@ So we design the user interface for users to decide the traveller's home easily.
 * Name: Dingting Huang  NUID:001824907</br>
 * Name: Yize Wang       NUID:001822633</br>
 * Name: Heng Wang       NUID:001822598</br>
+## Explanation
+We use insertion sort in our project. Because it is a easy function. The most important is that the sort function is inplace and stable.
