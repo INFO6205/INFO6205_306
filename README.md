@@ -11,4 +11,4 @@ So we design the user interface for users to decide the traveller's home easily.
 * Name: Yize Wang       NUID:001822633</br>
 * Name: Heng Wang       NUID:001822598</br>
 ## Explanation
-We use insertion sort in our project. Because it is a easy function. The most important thing is that the sort function is inplace and stable.
+We use insertion sort in our project. Because it is a easy function. The most importantly, the sort function is in-place and stable.
